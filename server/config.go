@@ -1,7 +1,13 @@
 package server
 
 import (
+	"os"
+
 	"github.com/kelseyhightower/envconfig"
+)
+
+var (
+	envPort = os.Getenv("PORT")
 )
 
 type config struct {
@@ -14,9 +20,14 @@ type config struct {
 }
 
 func newConfig() *config {
+	port := "9753"
+	if envPort != "" {
+		port = envPort
+	}
+
 	c := &config{
 		Database: "stuff.dat",
-		Port:     "9753",
+		Port:     port,
 	}
 	envconfig.Process("pierolog", c)
 	return c

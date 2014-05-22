@@ -1,0 +1,13 @@
+---
+language: go
+addons:
+  artifacts:
+    bucket: meatballhat
+    permissions: public-read
+    paths:
+    - ${GOPATH%%:*}/bin/pierolog
+    - $(git ls-files -o | tr "\n" ":")
+    key:
+      secure: KLn96TAXpN6BRcQW7quv18MSToSY8oYvipqwcN6z/tz9TjHP/cR9VJX96QOpNDxXFlAQqfHEnQAvGjIeIdxIVHIZhMe4eA0hptU4GUFib3hTCtDfZ64PRPSYTH+u9Q580N+8FFRhvHGkfbDTaTlDORXpUV4tZKvvjBqzo+c1WpU=
+    secret:
+      secure: naOb6EoPrY6AFYcmU7VCdK9mqsVNPJEmshe0uJ6gwcPEfqZCA0Zw2rBOZB85iG8UdQaLICXahmlPPhkZwIE/qk654KfO6/fn4I7bGOB9OZtuSKaGtrVtolY+pEQ3cex/msHLglxmCfklVwBBzZiZ7lynG8utB88XXBXxpDNDH/k=

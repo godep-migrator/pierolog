@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/meatballhat/pierolog",
+	"GoVersion": "go1.2.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/inject",
+			"Rev": "1817ef28a0e76985d513785871920d9f0c3df187"
+		},
+		{
+			"ImportPath": "github.com/go-martini/martini",
+			"Comment": "v0.1-153-gbaa4221",
+			"Rev": "baa42219288cdd775874794381aa987144012263"
+		}
+	]
+}

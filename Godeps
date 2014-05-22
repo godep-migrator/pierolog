@@ -3,6 +3,10 @@
 	"GoVersion": "go1.2.2",
 	"Deps": [
 		{
+			"ImportPath": "github.com/andybons/hipchat",
+			"Rev": "08bf65eade11bf8d584e933d01a35c2799c36ff4"
+		},
+		{
 			"ImportPath": "github.com/codegangsta/inject",
 			"Rev": "1817ef28a0e76985d513785871920d9f0c3df187"
 		},
@@ -10,6 +14,11 @@
 			"ImportPath": "github.com/go-martini/martini",
 			"Comment": "v0.1-153-gbaa4221",
 			"Rev": "baa42219288cdd775874794381aa987144012263"
+		},
+		{
+			"ImportPath": "github.com/kelseyhightower/envconfig",
+			"Comment": "v1.0.0",
+			"Rev": "0280e33525f5d88edb71638a80b31724153225ba"
 		}
 	]
 }

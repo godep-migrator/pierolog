@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+set -x
+
+go clean -x ./...
+which pierolog && rm -f $(which pierolog)
+go get -x ./...
+go build -x ./...

@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"github.com/kelseyhightower/envconfig"
@@ -6,13 +6,17 @@ import (
 
 type config struct {
 	Database string
-	Address  string
+	Port     string
+
+	HipChatAuthToken string
+	HipChatRoomID    string
+	HipChatFrom      string
 }
 
 func newConfig() *config {
 	c := &config{
 		Database: "stuff.dat",
-		Address:  ":9753",
+		Port:     "9753",
 	}
 	envconfig.Process("pierolog", c)
 	return c

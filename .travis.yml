@@ -1,4 +1,3 @@
----
 language: go
 go:
 - 1.2
@@ -16,6 +15,6 @@ addons:
     - ${GOPATH%%:*}/bin/pierolog
     - $(git ls-files -o | tr "\n" ":")
     key:
-      secure: KLn96TAXpN6BRcQW7quv18MSToSY8oYvipqwcN6z/tz9TjHP/cR9VJX96QOpNDxXFlAQqfHEnQAvGjIeIdxIVHIZhMe4eA0hptU4GUFib3hTCtDfZ64PRPSYTH+u9Q580N+8FFRhvHGkfbDTaTlDORXpUV4tZKvvjBqzo+c1WpU=
+      secure: PdM6qPYisOXWD8fLGYjeoPW3SJYX13BnAS+pF+0yM2iAUzG6zrJvhvcIU8uMjN+RaiY8ypaGprzMEiyoJTQ9KHnQ5qMZL1g93YIyD0ewMcMP16VH2NEnh/qYujlEm0qt80lpICSPNF/62Z43fDAYO2Wxt+cXIbcVY/aovEha7UI=
     secret:
-      secure: naOb6EoPrY6AFYcmU7VCdK9mqsVNPJEmshe0uJ6gwcPEfqZCA0Zw2rBOZB85iG8UdQaLICXahmlPPhkZwIE/qk654KfO6/fn4I7bGOB9OZtuSKaGtrVtolY+pEQ3cex/msHLglxmCfklVwBBzZiZ7lynG8utB88XXBXxpDNDH/k=
+      secure: CAfTXzOzGiKe2VGvJ6Vz1+K341MxreMoe4mjCWczWQWwDeJNAZ1LmAN/8y6NlkjPSlITTqPTCGo4IDyCu13kDk3PVTwHjFAinHps2ugT3z7hXrfQ1i1DBiPYe1Qzw7ZF26ejntjO3MzfNuN4cR8Up1gI6r30C+4sOxk5yDdUu/s=

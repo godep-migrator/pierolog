@@ -1,1 +1,1 @@
-web: pierolog
+web: pierolog serve

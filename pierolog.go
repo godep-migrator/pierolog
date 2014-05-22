@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/codegangsta/cli"
@@ -18,6 +19,13 @@ func main() {
 			Usage:     "serve the pierolog!",
 			Action: func(c *cli.Context) {
 				server.Main()
+			},
+		},
+		{
+			Name:  "implode",
+			Usage: "destroy everything",
+			Action: func(c *cli.Context) {
+				fmt.Println("ZOMG DESTROYING REDIS")
 			},
 		},
 	}

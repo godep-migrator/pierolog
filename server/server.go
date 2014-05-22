@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/garyburd/redigo/redis"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
@@ -17,6 +18,16 @@ type server struct {
 	cfg      *config
 	notifier *notifications.HipChatNotifier
 	db       *redis.Pool
+	log      *logrus.Logger
+}
+
+// Main is the whole shebang!
+func Main() {
+	server, err := newServer()
+	if err != nil {
+		log.Fatal(err)
+	}
+	server.Run()
 }
 
 func newPool(server, password string) *redis.Pool {
@@ -43,18 +54,17 @@ func newPool(server, password string) *redis.Pool {
 	}
 }
 
-// Main is the whole shebang!
-func Main() {
-	server, err := newServer()
-	if err != nil {
-		log.Fatal(err)
-	}
-	server.Run()
-}
-
 func newServer() (*server, error) {
 	cfg := newConfig()
 	db := newPool(cfg.RedisURL, cfg.RedisPassword)
+	log := logrus.New()
+	if cfg.Debug {
+		log.Level = logrus.Debug
+	}
+
+	if cfg.LogFormat == "json" {
+		log.Formatter = &logrus.JSONFormatter{}
+	}
 
 	return &server{
 		cfg: cfg,
@@ -62,8 +72,10 @@ func newServer() (*server, error) {
 			cfg.HipChatAuthToken,
 			cfg.HipChatRoomID,
 			cfg.HipChatFrom,
+			log,
 		),
-		db: db,
+		db:  db,
+		log: log,
 	}, nil
 }
 
@@ -76,7 +88,9 @@ func (srv *server) Run() {
 
 	os.Setenv("PORT", srv.cfg.Port)
 
-	log.Printf("running with config: %#v\n", srv.cfg)
+	srv.log.WithFields(logrus.Fields{
+		"config": srv.cfg,
+	}).Info("running with config")
 	m.Run()
 }
 
@@ -90,8 +104,7 @@ func (srv *server) handleGetAll(w http.ResponseWriter, r render.Render) {
 		return
 	}
 
-	log.Printf("Raw entries: %#v\n", entries)
-
+	srv.log.WithFields(logrus.Fields{"entries": entries}).Info("raw entries")
 	r.JSON(200, map[string]interface{}{"entries": entries})
 }
 
@@ -106,7 +119,8 @@ func (srv *server) handleCreate(w http.ResponseWriter, r *http.Request, rnd rend
 	defer conn.Close()
 
 	entryString := string(entryBytes)
-	log.Printf("Adding entry %#v\n", entryString)
+	srv.log.WithFields(logrus.Fields{"entry": entryString}).Info("adding entry")
+
 	_, err = conn.Do("SADD", "pierolog:entries", entryString)
 	if err != nil {
 		rnd.JSON(500, map[string]string{"error": err.Error()})
@@ -117,6 +131,6 @@ func (srv *server) handleCreate(w http.ResponseWriter, r *http.Request, rnd rend
 
 	err = srv.notifier.Notify("ermahgerd database is updated")
 	if err != nil {
-		log.Println("ERROR: ", err)
+		srv.log.WithFields(logrus.Fields{"error": err}).Error("boom")
 	}
 }

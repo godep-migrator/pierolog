@@ -15,6 +15,9 @@ type config struct {
 	Database string
 	Port     string
 
+	Debug     bool
+	LogFormat string
+
 	HipChatAuthToken string
 	HipChatRoomID    string
 	HipChatFrom      string
@@ -35,9 +38,11 @@ func newConfig() *config {
 	}
 
 	c := &config{
-		Database: "stuff.dat",
-		Port:     port,
-		RedisURL: redisURL,
+		Database:  "stuff.dat",
+		Port:      port,
+		RedisURL:  redisURL,
+		LogFormat: "text",
+		Debug:     false,
 	}
 	envconfig.Process("pierolog", c)
 	return c

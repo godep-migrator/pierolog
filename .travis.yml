@@ -15,6 +15,6 @@ addons:
     - ${GOPATH%%:*}/bin/pierolog
     - $(git ls-files -o | tr "\n" ":")
     key:
-      secure: PdM6qPYisOXWD8fLGYjeoPW3SJYX13BnAS+pF+0yM2iAUzG6zrJvhvcIU8uMjN+RaiY8ypaGprzMEiyoJTQ9KHnQ5qMZL1g93YIyD0ewMcMP16VH2NEnh/qYujlEm0qt80lpICSPNF/62Z43fDAYO2Wxt+cXIbcVY/aovEha7UI=
+      secure: M2qXiTEb9t1YPhRNr0heRWEfNVC+3fCZt/GMYTQmQ3GFb3G+3h1JYvXxM8xJGKe+vmFIeWXjm6FQl7TJTAsQ+fININeoRzapQ1qXc3ekp5JFSotL1DD8IA1zrM+qeY2B0OVjNHb9df2ExNJWiZ4J1lUTCP2MwocDAmKvFSXEVxs=
     secret:
-      secure: CAfTXzOzGiKe2VGvJ6Vz1+K341MxreMoe4mjCWczWQWwDeJNAZ1LmAN/8y6NlkjPSlITTqPTCGo4IDyCu13kDk3PVTwHjFAinHps2ugT3z7hXrfQ1i1DBiPYe1Qzw7ZF26ejntjO3MzfNuN4cR8Up1gI6r30C+4sOxk5yDdUu/s=
+      secure: G7y2ldWhCEymlmoI9+MgCxsV58BpmiyIGRGPZ4bs6jZXmAV4zo1Gdst6N2Qqq0XEt2gvva7LeQBU0tpBdIjyh2C5G+P7sZTAiO+dfyAulHZIDZrjEFm39+aL5ATHZIp+8XlbuSJneIVPWnT0A5RVW3RlcwoEeC1UP0xUAhvaMpI=

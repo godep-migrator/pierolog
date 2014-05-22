@@ -1,14 +1,26 @@
 package main
 
 import (
-	"fmt"
+	"io"
 	"net/http"
+	"os"
+
+	"github.com/go-martini/martini"
 )
 
 func main() {
-	http.HandleFunc(`/`, func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "pong\n")
+	m := martini.Classic()
+	m.Get(`/`, func(w http.ResponseWriter) {
+		fd, _ := os.Open("pierolog.db")
+		defer fd.Close()
+		w.WriteHeader(200)
+		io.Copy(w, fd)
 	})
-	http.ListenAndServe(":9753", nil)
+	m.Post(`/`, func(w http.ResponseWriter, r *http.Request) {
+		fd, _ := os.Create("pierolog.db")
+		defer fd.Close()
+		w.WriteHeader(200)
+		io.Copy(fd, r.Body)
+	})
+	http.ListenAndServe(":9753", m)
 }
